@@ -3,11 +3,13 @@ import { supabase } from "./supabase";
 import Auth from "./components/Auth";
 import Pedido from "./components/Pedido";
 import AdminPanel from "./components/AdminPanel";
+import Bienvenida from "./components/Bienvenida";
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [checking, setChecking] = useState(true);
+  const [startPedido, setStartPedido] = useState(false);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
@@ -33,5 +35,6 @@ export default function App() {
 
   if (checking) return <div>Cargando...</div>;
   if (isAdmin) return <AdminPanel user={user} />;
-  return <Pedido />;
+  if (!startPedido) return <Bienvenida onComenzar={() => setStartPedido(true)} />;
+  return <Pedido onVolver={() => setStartPedido(false)} />;
 }
