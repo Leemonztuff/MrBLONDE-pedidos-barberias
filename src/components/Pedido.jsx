@@ -107,9 +107,14 @@ export default function Pedido({ onVolver }) {
 
   if (pedidoEnviado) {
     return (
-      <div style={{ textAlign: "center", marginTop: 60 }}>
+      <div className="form-container">
+        <img
+          className="form-logo"
+          src="https://acdn-us.mitiendanube.com/stores/001/189/845/themes/common/logo-444226241-1724431587-bd5b136f0d1deff9293cc079c49fb07b1724431588-480-0.webp"
+          alt="Mr Blonde"
+        />
         <h2 style={{ color: "#e04545" }}>¡Gracias por tu pedido! 🎉</h2>
-        <p>Te contactamos pronto por WhatsApp.</p>
+        <p style={{ color: "#fff" }}>Te contactamos pronto por WhatsApp.</p>
         <a
           href={whatsappLink}
           target="_blank" rel="noopener noreferrer"
@@ -129,22 +134,27 @@ export default function Pedido({ onVolver }) {
   }
 
   return (
-    <div style={{ maxWidth: 430, margin: "30px auto" }}>
-      <h2 style={{ textAlign: "center", color: "#e04545", fontWeight: 800 }}>Nuevo pedido</h2>
-      <div style={{ margin: "16px 0", textAlign: "center" }}>
-        <span style={{ color: "#888" }}>Paso {step+1} de 3</span>
+    <div className="form-container">
+      <img
+        className="form-logo"
+        src="https://acdn-us.mitiendanube.com/stores/001/189/845/themes/common/logo-444226241-1724431587-bd5b136f0d1deff9293cc079c49fb07b1724431588-480-0.webp"
+        alt="Mr Blonde"
+      />
+      <div className="form-title">Nuevo pedido</div>
+      <div style={{ margin: "12px 0 18px 0", textAlign: "center" }}>
+        <span style={{ color: "#fff", opacity: 0.8 }}>Paso {step+1} de 3</span>
       </div>
       {step === 0 && (
         <div>
           {productos.map((p, i) => (
             <div key={i} style={{
-              display: "flex", alignItems: "center", marginBottom: 15, background: "#fff", borderRadius: 8, boxShadow: "0 1px 8px #0001", padding: 12
+              display: "flex", alignItems: "center", marginBottom: 15, background: "#23211c", borderRadius: 8, boxShadow: "0 1px 8px #0002", padding: 11
             }}>
-              <div style={{ flex: 1 }}>{p.name}</div>
+              <div style={{ flex: 1, color: "#fff", fontWeight: 600 }}>{p.name}</div>
               <div style={{ color: "#e04545", fontWeight: 700, fontSize: "1em", width: 100 }}>${p.price.toLocaleString('es-AR', {minimumFractionDigits:2})}</div>
-              <input type="number" min={0} value={pedido[i] || ""} onChange={e => handlePedidoChange(i, Math.max(0, Number(e.target.value)))} style={{width: 50, marginLeft: 16, borderRadius: 6, border: "1px solid #ddd"}} />
+              <input type="number" min={0} value={pedido[i] || ""} onChange={e => handlePedidoChange(i, Math.max(0, Number(e.target.value)))} style={{width: 50, marginLeft: 16, borderRadius: 6, border: "1px solid #d4af37", background: "#181818", color: "#fff"}} />
               {pedido[i] > 0 && p.bonus && calcularBonus(pedido[i], p.bonus) > 0 && (
-                <span className="bonus-badge" data-tooltip={`¡Promo ${p.bonus} aplicada!`} style={{ marginLeft: 8 }}>
+                <span className="bonus-badge" data-tooltip={`¡Promo ${p.bonus} aplicada!`} style={{ marginLeft: 8, color: "#d4af37", fontWeight: 700 }}>
                   (+{calcularBonus(pedido[i], p.bonus)})
                 </span>
               )}
@@ -154,26 +164,32 @@ export default function Pedido({ onVolver }) {
         </div>
       )}
       {step === 1 && (
-        <div>
-          <label>Tu nombre *</label>
-          <input type="text" required value={datos.nombre} onChange={e => setDatos({ ...datos, nombre: e.target.value })} style={{ width: "100%", marginBottom: 10, padding: 8, borderRadius: 6, border: "1px solid #bbb" }} />
-          <label>WhatsApp *</label>
-          <input type="text" required value={datos.telefono} onChange={e => setDatos({ ...datos, telefono: e.target.value })} style={{ width: "100%", marginBottom: 10, padding: 8, borderRadius: 6, border: "1px solid #bbb" }} />
-          <label>Localidad *</label>
-          <select value={datos.localidad} onChange={e => setDatos({ ...datos, localidad: e.target.value })} style={{ width: "100%", padding: 8, borderRadius: 6, marginBottom: 10 }}>
+        <form onSubmit={e => { e.preventDefault(); handleNext(); }}>
+          <label htmlFor="nombre">Tu nombre *</label>
+          <input id="nombre" type="text" required value={datos.nombre} onChange={e => setDatos({ ...datos, nombre: e.target.value })} />
+
+          <label htmlFor="telefono">WhatsApp *</label>
+          <input id="telefono" type="text" required value={datos.telefono} onChange={e => setDatos({ ...datos, telefono: e.target.value })} />
+
+          <label htmlFor="localidad">Localidad *</label>
+          <select id="localidad" required value={datos.localidad} onChange={e => setDatos({ ...datos, localidad: e.target.value })}>
             <option value="">Selecciona tu localidad</option>
             {LOCALIDADES.map(loc => <option key={loc} value={loc}>{loc}</option>)}
           </select>
-          <label>Email (opcional, para historial)</label>
-          <input type="email" value={datos.email} onChange={e => setDatos({ ...datos, email: e.target.value })} style={{ width: "100%", marginBottom: 14, padding: 8, borderRadius: 6, border: "1px solid #bbb" }} />
-          <button className="grey" onClick={() => setStep(0)} style={{ marginRight: 6 }}>Atrás</button>
-          <button className="green" onClick={handleNext}>Siguiente</button>
-        </div>
+
+          <label htmlFor="email">Email (opcional, para historial)</label>
+          <input id="email" type="email" value={datos.email} onChange={e => setDatos({ ...datos, email: e.target.value })} />
+
+          <div style={{ display: "flex", gap: 8 }}>
+            <button type="button" className="grey" onClick={() => setStep(0)}>Atrás</button>
+            <button type="submit" className="green">Siguiente</button>
+          </div>
+        </form>
       )}
       {step === 2 && (
         <div>
-          <h4 style={{ color: "#e04545" }}>Confirmá tu pedido</h4>
-          <ul style={{ fontSize: 17, margin: "14px 0 10px 0" }}>
+          <h4 style={{ color: "#e04545", marginBottom: 12 }}>Confirmá tu pedido</h4>
+          <ul style={{ fontSize: 17, margin: "14px 0 10px 0", color: "#fff" }}>
             {calcularResumen().productos.map((p, idx) => (
               <li key={idx} style={{ marginBottom: 4 }}>
                 <span role="img" aria-label="check">🧴</span> {p.nombre}: <b>{p.cantidad}{p.bonus ? ` (+${p.bonus})` : ""}</b>
@@ -183,10 +199,12 @@ export default function Pedido({ onVolver }) {
           <div style={{ fontWeight: 700, color: "#e04545", fontSize: 22, margin: "10px 0" }}>
             Total: ${calcularResumen().total.toLocaleString('es-AR', {minimumFractionDigits:2})}
           </div>
-          <button className="grey" onClick={() => setStep(1)} style={{ marginRight: 6 }}>Atrás</button>
-          <button className="green" onClick={enviarPedido} disabled={cargando}>
-            {cargando ? "Enviando..." : "Enviar Pedido"}
-          </button>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button className="grey" onClick={() => setStep(1)}>Atrás</button>
+            <button className="green" onClick={enviarPedido} disabled={cargando}>
+              {cargando ? "Enviando..." : "Enviar Pedido"}
+            </button>
+          </div>
         </div>
       )}
       {upsellOpen && <UpsellModal onFinish={finalizarPedido} onCancel={() => setUpsellOpen(false)} />}
