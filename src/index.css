@@ -81,3 +81,34 @@ button.grey {
     max-width: 99vw;
   }
 }
+.modal-ux-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInModal 0.2s;
+}
+@keyframes fadeInModal {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.modal-ux-content {
+  background: #181818;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px #000c;
+  padding: 30px 22px 24px 22px;
+  max-width: 95vw;
+  min-width: 280px;
+  color: #fff;
+  position: relative;
+}
+.modal-ux-content h2, .modal-ux-content h3 {
+  color: #e04545;
+  margin-top: 0;
+}
+.modal-ux-content button {
+  margin-top: 12px;
+}
