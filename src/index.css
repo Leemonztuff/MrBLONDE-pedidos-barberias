@@ -1,6 +1,66 @@
 body {
+  background: #191919;
+  font-family: 'Montserrat', 'Arial', sans-serif;
   margin: 0;
-  background: #f9fafd;
-  font-family: 'Montserrat', Arial, sans-serif;
+  min-height: 100vh;
 }
-* { box-sizing: border-box;}
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+button, .green {
+  background: #e04545;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 0;
+  font-size: 19px;
+  font-weight: 700;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+button.green:disabled {
+  background: #bbb;
+  color: #fff;
+  cursor: not-allowed;
+}
+button.grey {
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 0;
+  font-size: 17px;
+  font-weight: 600;
+  width: 40%;
+  margin-top: 12px;
+}
+input, select {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 17px;
+  padding: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+ol {
+  padding-left: 20px;
+}
+@media (max-width: 600px) {
+  body {
+    background: #191919;
+  }
+  .App, div[style*='maxWidth: 430px'] {
+    max-width: 99vw !important;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+::-webkit-scrollbar { width: 8px; background: #eee;}
+::-webkit-scrollbar-thumb { background: #e04545; border-radius: 8px;}
