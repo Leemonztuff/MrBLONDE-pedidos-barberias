@@ -176,3 +176,38 @@ button.grey {
   margin-bottom: 2px;
   margin-left: 6px;
 }
+.teclado-num {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  justify-items: center;
+  margin-bottom: 10px;
+}
+.btn-num {
+  background: #23211c;
+  color: #d4af37;
+  font-size: 1.5em;
+  font-weight: 700;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  width: 60px;
+  height: 48px;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.13s, color 0.13s;
+}
+.btn-num:hover {
+  background: #e04545;
+  color: #fff;
+}
+.btn-borrar {
+  grid-column: span 3;
+  background: #e04545;
+  color: #fff;
+  border: 2px solid #e04545;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.1em;
+  margin-top: 6px;
+}
