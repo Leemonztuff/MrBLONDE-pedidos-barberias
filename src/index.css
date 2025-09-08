@@ -60,7 +60,7 @@ button.green {
   width: 100%;
   transition: background 0.2s, box-shadow 0.2s;
 }
-button.green:hover {
+button.green:hover, a.green:hover {
   background: linear-gradient(90deg, #e04545 40%, #d4af37 100%);
   box-shadow: 0 6px 28px #e0454540;
 }
@@ -81,6 +81,8 @@ button.grey {
     max-width: 99vw;
   }
 }
+::-webkit-scrollbar { width: 8px; background: #eee;}
+::-webkit-scrollbar-thumb { background: #e04545; border-radius: 8px;}
 .modal-ux-overlay {
   position: fixed;
   z-index: 1000;
@@ -111,4 +113,66 @@ button.grey {
 }
 .modal-ux-content button {
   margin-top: 12px;
+}
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.card-producto {
+  position: relative;
+  height: 190px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 0 3px 18px #0005;
+  display: flex;
+  align-items: end;
+  transition: transform 0.12s;
+}
+.card-producto:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px #0007;
+}
+.degrade-bottom {
+  width: 100%;
+  padding: 12px 12px 10px 12px;
+  background: linear-gradient(0deg, #000c 70%, #0004 90%, transparent 100%);
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 9px;
+}
+.nombre-prod {
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.precio-pill {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: linear-gradient(90deg, #e04545 60%, #d4af37 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.05em;
+  border-radius: 999px;
+  padding: 5px 14px;
+  box-shadow: 0 2px 8px #0007;
+  z-index: 2;
+}
+.cantidad-pill {
+  background: #d4af37;
+  color: #181818;
+  font-weight: 900;
+  border-radius: 9px;
+  padding: 3px 10px;
+  font-size: 1em;
+  margin-bottom: 2px;
+  margin-left: 6px;
 }
