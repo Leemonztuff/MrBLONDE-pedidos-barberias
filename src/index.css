@@ -1,6 +1,8 @@
+p {
   margin-bottom: 10px;
   margin-top: 8px;
 }
+
 .btn-num-minimal {
   background: transparent;
   border: 2px solid #d4af37;
@@ -15,11 +17,14 @@
   transition: background 0.13s, color 0.13s, border 0.13s;
   margin-bottom: 0;
 }
-.btn-num-minimal:hover, .btn-num-minimal:focus {
+
+.btn-num-minimal:hover,
+.btn-num-minimal:focus {
   background: #e04545;
   color: #fff;
   border: 2px solid #e04545;
 }
+
 .btn-borrar-minimal {
   grid-column: span 3;
   background: #e04545;
